@@ -89,7 +89,6 @@ spec:
     - name: project_id
       description: Google Cloud project ID.
       varType: string
-      defaultValue: null
       required: true
     - name: region
       description: Google Cloud region where the cloud resource will be created.

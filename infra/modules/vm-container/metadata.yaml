@@ -1,0 +1,119 @@
+# Copyright 2023 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-cloud-deployment-gce-vm-container
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  info:
+    title: Cloud Deployment on GCE - VM Container
+    source:
+      repo: https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce.git
+      sourceType: git
+      dir: /infra/modules/vm-container
+    actuationTool:
+      flavor: Terraform
+      version: '>= 0.13'
+    description: {}
+  content:
+    examples:
+    - name: simple_example
+      location: examples/simple_example
+  interfaces:
+    variables:
+    - name: health_check_port
+      description: health check port
+      varType: number
+      required: true
+    - name: hostname
+      description: hostname for the instance
+      varType: string
+      defaultValue: ""
+    - name: labels
+      description: A map of key/value label pairs to assign to the resources.
+      varType: map(string)
+      required: true
+    - name: metadata
+      description: metadata to attach to the instance
+      varType: map(any)
+      defaultValue: {}
+    - name: mig_name
+      description: managed instance group name
+      varType: string
+      required: true
+    - name: named_ports
+      description: named ports
+      varType: |-
+        list(object(
+            {
+              name = string
+              port = number
+            }
+          ))
+      required: true
+    - name: project_id
+      description: GCP project ID.
+      varType: string
+      required: true
+    - name: region
+      description: The region chosen to be used.
+      varType: string
+      required: true
+    - name: service_account
+      description: Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+      varType: |-
+        object({
+            email  = string
+            scopes = set(string)
+          })
+      required: true
+    - name: source_image
+      description: The source image used to create the instance.
+      varType: string
+      required: true
+    - name: startup_script
+      description: The startup script to be used on the instance.
+      varType: string
+      defaultValue: ""
+    - name: tags
+      description: network tags for the instance
+      varType: list(string)
+      required: true
+    - name: vpc_network_self_link
+      description: VPC network self link to deploy the instance in
+      varType: string
+      required: true
+    outputs:
+    - name: instance_group_url
+      description: The URL of the instance group.
+    - name: mig_self_link
+      description: The self link of the instance group manager.
+  requirements:
+    roles:
+    - level: Project
+      roles:
+      - roles/storage.admin
+      - roles/iam.serviceAccountAdmin
+      - roles/resourcemanager.projectIamAdmin
+      - roles/editor
+      - roles/secretmanager.admin
+      - roles/servicenetworking.networksAdmin
+    services:
+    - cloudresourcemanager.googleapis.com
+    - iam.googleapis.com
+    - storage.googleapis.com
+    - serviceusage.googleapis.com

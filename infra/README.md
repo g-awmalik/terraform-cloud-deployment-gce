@@ -24,16 +24,17 @@ The resources/services/activations/deletions that this module will create/trigge
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
+
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | bucket\_location | Bucket location where the uploaded files will be stored. | `string` | `"US"` | no |
 | data\_init\_archive\_file\_name | Name of the archive file that contains the initialization data. | `string` | `"initialization.tar.gz"` | no |
 | data\_init\_bucket\_name | Name of the Cloud Storage bucket that store the archive file for initialization. | `string` | `"jss-resources"` | no |
 | labels | A map of key/value label pairs to assign to the cloud resources. | `map(string)` | <pre>{<br>  "app": "cloud-deployment-gce-java"<br>}</pre> | no |
-| project\_id | Google Cloud project ID. | `string` | n/a | yes |
-| region | Google Cloud region where the cloud resource will be created. | `string` | `"us-central1"` | no |
+| project\_id | GCP project ID. | `string` | n/a | yes |
+| region | GCP region where the cloud resource will be created. | `string` | `"us-central1"` | no |
 | source\_image | The source image used to create the instance. | `string` | `"https://www.googleapis.com/compute/beta/projects/hsa-public/global/images/jss-cd-gce-vm-image"` | no |
-| zones | Google Cloud zones where the cloud resource will be created. | `list(string)` | <pre>[<br>  "us-central1-a"<br>]</pre> | no |
+| zones | GCP zones where the cloud resource will be created. | `list(string)` | <pre>[<br>  "us-central1-a"<br>]</pre> | no |
 
 ## Outputs
 

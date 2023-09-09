@@ -15,40 +15,28 @@
 apiVersion: blueprints.cloud.google.com/v1alpha1
 kind: BlueprintMetadata
 metadata:
-  name: terraform-cloud-deployment-gce-display
+  name: terraform-cloud-deployment-gce-load-balancer/backend-config-display
   annotations:
     config.kubernetes.io/local-config: "true"
 spec:
   info:
-    title: Cloud Deployment on GCE
+    title: Cloud Deployment on GCE - Backend
     source:
       repo: https://github.com/GoogleCloudPlatform/terraform-cloud-deployment-gce.git
       sourceType: git
-      dir: /infra
+      dir: /infra/modules/load-balancer/backend-config
   ui:
     input:
       variables:
-        bucket_location:
-          name: bucket_location
-          title: Bucket Location
-        data_init_archive_file_name:
-          name: data_init_archive_file_name
-          title: Data Init Archive File Name
-        data_init_bucket_name:
-          name: data_init_bucket_name
-          title: Data Init Bucket Name
-        labels:
-          name: labels
-          title: Labels
-        project_id:
-          name: project_id
-          title: Project Id
-        region:
-          name: region
-          title: Region
-        source_image:
-          name: source_image
-          title: Source Image
-        zones:
-          name: zones
-          title: Zones
+        backends:
+          name: backends
+          title: Backends
+        health_check_port:
+          name: health_check_port
+          title: Health Check Port
+        name_suffix:
+          name: name_suffix
+          title: Name Suffix
+        port_name:
+          name: port_name
+          title: Port Name
