@@ -36,14 +36,14 @@ spec:
       url: https://cloud.google.com/products/calculator/#id=5675e489-0e9f-4692-b41c-8ecdf35a8563
     cloudProducts:
     - productId: COMPUTE_SECTION
+      pageUrl: ""
       label: Compute Engine
-
     - productId: SQL_SECTION
+      pageUrl: ""
       label: Cloud SQL
-
     - productId: LOAD_BALANCING_SECTION
+      pageUrl: ""
       label: Load Balancer
-
   content:
     architecture:
       diagramUrl: https://www.gstatic.com/pantheon/images/solutions/cloud_deployment_gce_architecture_v1.png

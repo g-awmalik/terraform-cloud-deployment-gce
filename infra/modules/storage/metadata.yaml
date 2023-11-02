@@ -48,7 +48,7 @@ spec:
       varType: string
       required: true
     - name: project_id
-      description: GCP project ID.
+      description: Google Cloud project ID.
       varType: string
       required: true
     outputs:
@@ -69,3 +69,4 @@ spec:
     - iam.googleapis.com
     - storage.googleapis.com
     - serviceusage.googleapis.com
+    - logging.googleapis.com
